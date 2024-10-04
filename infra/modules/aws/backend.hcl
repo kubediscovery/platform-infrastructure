@@ -1,4 +1,4 @@
-key    = "platform/terraform/infrastructure/terraform-platform.tfstate"
+key    = "platform/terraform/infrastructure/terraform-teste.tfstate"
 bucket = "kubediscovery"
 region = "us-east-1"
 workspace_key_prefix = "develop"
