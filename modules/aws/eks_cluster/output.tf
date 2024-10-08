@@ -1,0 +1,36 @@
+output "eks_vpc_config" {
+  value = module.cluster.eks_vpc_config
+}
+
+output "oidc_provider" {
+  value = module.cluster.oidc_provider
+}
+
+output "oidc" {
+  value = module.cluster.oidc
+}
+
+output "certificate_authority" {
+  value = module.cluster.certificate_authority
+}
+
+output "endpoint" {
+  value = module.cluster.endpoint
+}
+
+output "cluster_name" {
+  value = module.cluster.cluster_name
+}
+
+output "lb_oidc" {
+  value = module.lb_controller.lb_oidc
+}
+
+output "cluster" {
+  value = {
+    "oidc"                  = module.lb_controller.lb_oidc
+    "endpoint"              = module.cluster.endpoint
+    "cluster_name"          = module.cluster.cluster_name
+    "certificate_authority" = module.cluster.certificate_authority
+  }
+}
