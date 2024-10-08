@@ -1,0 +1,11 @@
+---
+name: learn
+region: us-east-1
+vpc:
+  cidr: "10.0.0.0/16"
+tags:
+  Owner: "learn"
+  PartOf: "learn-aws"
+  Environment: "dev"
+  Support: "learn"
+  Client: "learn"
