@@ -1,2 +1,9 @@
-kubeconfig_name: ${kubeconfig_name}
-endpoint:  ${endpoint}
+apiVersion: v1
+preferences: {}
+kind: Config
+
+clusters:
+- cluster:
+    server: ${endpoint}
+    certificate-authority-data: cluster_auth_base64
+  name: ${kubeconfig_name}

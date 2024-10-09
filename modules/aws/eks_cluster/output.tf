@@ -29,10 +29,11 @@ output "cluster_name" {
 output "cluster" {
   value = {
     # "oidc"                   = module.lb_controller.lb_oidc
-    "endpoint"               = module.cluster.endpoint
-    "cluster_name"           = module.cluster.cluster_name
-    "certificate_authority"  = module.cluster.certificate_authority
-    "cluster_ca_certificate" = module.cluster.certificate_authority[0].data
+    "endpoint"                   = module.cluster.endpoint
+    "cluster_name"               = module.cluster.cluster_name
+    "certificate_authority"      = module.cluster.certificate_authority
+    "cluster_ca_certificate"     = module.cluster.certificate_authority[0].data
+    "cluster_ca_certificate_b64" = base64encode(module.cluster.certificate_authority[0].data)
   }
 }
 
