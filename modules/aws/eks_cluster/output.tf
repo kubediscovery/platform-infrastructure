@@ -31,6 +31,7 @@ output "cluster" {
     # "oidc"                   = module.lb_controller.lb_oidc
     "endpoint"                   = module.cluster.endpoint
     "cluster_name"               = module.cluster.cluster_name
+    "cluster_id"                 = module.cluster.raw.arn
     "certificate_authority"      = module.cluster.certificate_authority
     "cluster_ca_certificate"     = module.cluster.certificate_authority[0].data
     "cluster_ca_certificate_b64" = base64encode(module.cluster.certificate_authority[0].data)
