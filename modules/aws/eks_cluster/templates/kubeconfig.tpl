@@ -17,7 +17,7 @@ current-context: ${cluster_arn}
 users:
 - name: ${cluster_arn}
   user:
-    client-certificate-data: **base64 encoded**
+    certificate-authority-data: ${cluster_auth_base64}
     client-key-data: **base64 encoded**
     token: ${token}  
     # exec:

@@ -18,7 +18,7 @@ module "cluster" {
   public_subnet_1b = module.network.subnet_pub_1b
 }
 
-data "aws_eks_cluster" "this" {
+data "aws_eks_cluster_auth" "this" {
   name = module.cluster.cluster_name
 }
 
