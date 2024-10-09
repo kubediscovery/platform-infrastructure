@@ -56,6 +56,8 @@ output "cluster" {
     "cluster_name"           = module.aks[0].name
     "certificate_authority"  = local.kube.kube_config[0]
     "cluster_ca_certificate" = local.kube.kube_config[0].cluster_ca_certificate
+    "kubeconfig"             = yamlencode(local.kube.kube_config[0])
+    "kubeconfig_raw"         = local.kube.kube_config_raw
   }
 }
 
