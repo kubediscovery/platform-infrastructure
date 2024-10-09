@@ -35,7 +35,6 @@ output "cluster" {
     "certificate_authority"      = module.cluster.certificate_authority
     "cluster_ca_certificate"     = module.cluster.certificate_authority[0].data
     "cluster_ca_certificate_b64" = base64encode(module.cluster.certificate_authority[0].data)
-    "kubeconfig"                 = local.kubeconfig
   }
 }
 
