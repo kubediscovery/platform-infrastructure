@@ -37,6 +37,6 @@ output "cluster" {
 }
 
 output "kubeconfig" {
-  value = module.cluster.cluster_name
+  value = local.kubeconfig
 }
 
