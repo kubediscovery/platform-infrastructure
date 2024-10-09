@@ -7,3 +7,4 @@ clusters:
     server: ${endpoint}
     certificate-authority-data: ${cluster_auth_base64}
   name: ${kubeconfig_name}
+  id: ${kubeconfig_id}

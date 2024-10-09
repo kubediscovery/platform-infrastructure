@@ -1,6 +1,7 @@
 locals {
   kubeconfig = templatefile("${path.module}/templates/kubeconfig.tpl", {
-    kubeconfig_name     = module.cluster.cluster_name
+    kubeconfig_name     = module.cluster.raw.id
+    kubeconfig_id       = module.cluster.cluster_name
     endpoint            = module.cluster.endpoint
     cluster_auth_base64 = module.cluster.certificate_authority[0].data
     # aws_authenticator_command         = var.kubeconfig_aws_authenticator_command
