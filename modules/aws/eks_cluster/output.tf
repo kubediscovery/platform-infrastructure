@@ -28,9 +28,10 @@ output "lb_oidc" {
 
 output "cluster" {
   value = {
-    "oidc"                  = module.lb_controller.lb_oidc
-    "endpoint"              = module.cluster.endpoint
-    "cluster_name"          = module.cluster.cluster_name
-    "certificate_authority" = module.cluster.certificate_authority
+    "oidc"                   = module.lb_controller.lb_oidc
+    "endpoint"               = module.cluster.endpoint
+    "cluster_name"           = module.cluster.cluster_name
+    "certificate_authority"  = module.cluster.certificate_authority
+    "cluster_ca_certificate" = module.cluster.certificate_authority[0].data
   }
 }
