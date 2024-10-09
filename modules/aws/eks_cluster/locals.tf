@@ -6,5 +6,6 @@ locals {
     kubeconfig_id       = module.cluster.cluster_name
     endpoint            = module.cluster.endpoint
     cluster_auth_base64 = module.cluster.certificate_authority[0].data
+    token               = ""
   })
 }
