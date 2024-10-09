@@ -18,7 +18,6 @@ users:
 - name: ${cluster_arn}
   user:
     certificate-authority-data: ${cluster_auth_base64}
-    client-key-data: **base64 encoded**
     token: ${token}  
     # exec:
     #   apiVersion: client.authentication.k8s.io/v1beta1
