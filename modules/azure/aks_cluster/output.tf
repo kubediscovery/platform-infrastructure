@@ -39,7 +39,7 @@ output "log_analytics" {
   sensitive   = true
 }
 
-output "kube_config_raw" {
+output "kubeconfig_raw" {
   value     = local.kube.kube_config_raw
   sensitive = true
 }
