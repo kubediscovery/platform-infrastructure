@@ -1,5 +1,4 @@
 apiVersion: v1
-preferences: {}
 kind: Config
 
 clusters:
@@ -7,6 +6,22 @@ clusters:
     server: ${endpoint}
     certificate-authority-data: ${cluster_auth_base64}
   name: ${kubeconfig_name}
+
+users:
+- name: arn:aws:eks:us-east-1:931627500555:cluster/platform2-cluster-eks
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - us-east-1
+      - eks
+      - get-token
+      - --cluster-name
+      - platform2-cluster-eks
+      - --output
+      - json
+      command: aws
 
 contexts:
 - context:
@@ -16,23 +31,11 @@ contexts:
 
 current-context: ${kubeconfig_name}
 
-users:
-- name: ${kubeconfig_name}
-  user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1alpha1
-      command: ${aws_authenticator_command}
-      args:
-%{~ for i in aws_authenticator_command_args }
-        - "${i}"
-%{~ endfor ~}
-%{ for i in aws_authenticator_additional_args }
-        - ${i}
-%{~ endfor ~}
-%{ if length(aws_authenticator_env_variables) > 0 }
-      env:
-  %{~ for k, v in aws_authenticator_env_variables ~}
-        - name: ${k}
-          value: ${v}
-  %{~ endfor ~}
-%{ endif }
+
+kubeconfig_name: ${kubeconfig_name}
+endpoint:  ${endpoint}
+cluster_auth_base64: ${cluster_auth_base64}
+aws_authenticator_command: ${aws_authenticator_command}
+aws_authenticator_command_args: ${aws_authenticator_command_args}
+aws_authenticator_additional_args: ${aws_authenticator_additional_args}
+aws_authenticator_env_variables: ${aws_authenticator_env_variables}
