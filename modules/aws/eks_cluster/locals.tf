@@ -1,6 +1,6 @@
 locals {
   kubeconfig = templatefile("${path.module}/templates/kubeconfig.tpl", {
-    kubeconfig_name     = module.cluster.raw.arn
+    cluster_arn         = module.cluster.raw.arn
     kubeconfig_id       = module.cluster.cluster_name
     endpoint            = module.cluster.endpoint
     cluster_auth_base64 = module.cluster.certificate_authority[0].data
