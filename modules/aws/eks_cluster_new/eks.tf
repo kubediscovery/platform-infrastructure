@@ -23,10 +23,10 @@ module "eks" {
       instance_types = ["t3.medium"]
 
       min_size = 1
-      max_size = 3
+      max_size = 1
       # This value is ignored after the initial creation
       # https://github.com/bryantbiggs/eks-desired-size-hack
-      desired_size = 2
+      desired_size = 1
     }
     # platform = {
     #   # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
