@@ -3,7 +3,7 @@ module "eks" {
   version = "~> 20.24"
 
   cluster_name    = "${var.project_name}-eks"
-  cluster_version = "1.28"
+  cluster_version = "1.29"
 
   # EKS Addons
   cluster_addons = {
@@ -28,17 +28,17 @@ module "eks" {
       # https://github.com/bryantbiggs/eks-desired-size-hack
       desired_size = 2
     }
-    platform = {
-      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
-      ami_type       = "AL2_x86_64"
-      instance_types = ["t3.medium"]
+    # platform = {
+    #   # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
+    #   ami_type       = "AL2_x86_64"
+    #   instance_types = ["t3.medium"]
 
-      min_size = 1
-      max_size = 2
-      # This value is ignored after the initial creation
-      # https://github.com/bryantbiggs/eks-desired-size-hack
-      desired_size = 1
-    }
+    #   min_size = 1
+    #   max_size = 2
+    #   # This value is ignored after the initial creation
+    #   # https://github.com/bryantbiggs/eks-desired-size-hack
+    #   desired_size = 1
+    # }
   }
 
   tags = var.tags
