@@ -5,9 +5,6 @@ module "vpc" {
   name = "eks-vpc"
   cidr = "10.0.0.0/16"
 
-  providers = {
-    aws = var.region
-  }
 
   azs = ["us-east-1a", "us-east-1b"]
   #private_subnets     = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
