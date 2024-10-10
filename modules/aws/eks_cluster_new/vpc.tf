@@ -12,10 +12,11 @@ module "vpc" {
   private_subnets = [cidrsubnet(var.cidr_block, 7, 1), cidrsubnet(var.cidr_block, 7, 2)]
   public_subnets  = [cidrsubnet(var.cidr_block, 7, 3), cidrsubnet(var.cidr_block, 7, 4)]
 
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+  enable_nat_gateway     = true
+  single_nat_gateway     = true
+  one_nat_gateway_per_az = false
+  enable_dns_hostnames   = true
+  enable_dns_support     = true
 
   public_subnet_tags = {
     "kubernetes.io/role/elb" = 1
