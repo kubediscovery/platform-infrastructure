@@ -22,3 +22,10 @@ variable "region" {
   type        = string
   description = "AWS region to create the resources"
 }
+
+variable "cloud_provider" {
+  type        = string
+  description = "Cloud provider to create the resources"
+  default     = "aws"
+
+}
