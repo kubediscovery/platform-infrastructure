@@ -1,68 +1,52 @@
-module "eks" {
+module "eks_al2023" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
 
   cluster_name    = "${var.project_name}-eks"
-  cluster_version = "1.27"
+  cluster_version = "1.30"
 
-  cluster_endpoint_public_access  = true
-  cluster_endpoint_private_access = true
+  # EKS Addons
+  cluster_addons = {
+    coredns                = {}
+    eks-pod-identity-agent = {}
+    kube-proxy             = {}
+    vpc-cni                = {}
+  }
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  enable_irsa = true
-
-  eks_managed_node_group_defaults = {
-    instance_types = ["t3.medium"]
-    disk_size      = 50
-  }
-
   eks_managed_node_groups = {
-    nodes = {
-      min_size     = 1
-      max_size     = 1
-      desired_size = 1
-
+    example = {
+      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       instance_types = ["t3.medium"]
+
+      min_size = 1
+      max_size = 2
+      # This value is ignored after the initial creation
+      # https://github.com/bryantbiggs/eks-desired-size-hack
+      desired_size = 2
+
+      # This is not required - demonstrates how to pass additional configuration to nodeadm
+      # Ref https://awslabs.github.io/amazon-eks-ami/nodeadm/doc/api/
+      cloudinit_pre_nodeadm = [
+        {
+          content_type = "application/node.eks.aws"
+          content      = <<-EOT
+            ---
+            apiVersion: node.eks.aws/v1alpha1
+            kind: NodeConfig
+            spec:
+              kubelet:
+                config:
+                  shutdownGracePeriod: 30s
+                  featureGates:
+                    DisableKubeletCloudCredentialProviders: true
+          EOT
+        }
+      ]
     }
   }
-
-
-
-  # create_kms_key              = false
-  # create_cloudwatch_log_group = false
-  # cluster_encryption_config   = {}
-
-
-  # cluster_addons = {
-  #   coredns = {
-  #     most_recent = true
-  #   }
-  #   kube-proxy = {
-  #     most_recent = true
-  #   }
-  #   vpc-cni = {
-  #     most_recent = true
-  #   }
-  # }
-
-
-  # control_plane_subnet_ids = module.vpc.private_subnets
-
-  # # EKS Managed Node Group(s)
-
-
-  # node_security_group_additional_rules = {
-  #   ingress_self_all = {
-  #     description = "Node to node all ports/protocols"
-  #     protocol    = "-1"
-  #     from_port   = 0
-  #     to_port     = 0
-  #     type        = "ingress"
-  #     self        = true
-  #   }
-  # }
 
   tags = var.tags
 }
