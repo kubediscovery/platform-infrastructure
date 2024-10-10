@@ -1,6 +1,6 @@
 locals {
   aws_enabled   = var.cloud_provider == "aws" ? [] : []
-  azure_enabled = var.cloud_provider == "azure"
+  azure_enabled = var.cloud_provider == "azure" ? [] : []
 }
 
 output "enabled_provider" {
