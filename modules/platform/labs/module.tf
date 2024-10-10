@@ -19,7 +19,7 @@ resource "null_resource" "azure" {
 
 module "platform" {
   source = "git::https://github.com/kubediscovery/platform-infrastructure.git//modules/aws/eks_cluster?ref=main"
-  # count  = local.provider
+  count  = local.aws_enabled ? 1 : 0
 
   project_name = var.project_name
   cidr_block   = var.cidr_block
