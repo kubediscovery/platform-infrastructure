@@ -12,6 +12,8 @@ module "eks" {
   create_cloudwatch_log_group = false
   cluster_encryption_config   = {}
 
+  enable_irsa = true
+
   cluster_addons = {
     coredns = {
       most_recent = true
