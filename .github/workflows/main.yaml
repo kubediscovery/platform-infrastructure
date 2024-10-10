@@ -1,0 +1,32 @@
+---
+name: validate-golang-code
+run-name: ${{ github.actor }} is validate code out GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v4
+    #   env:
+    #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    #   with:
+    #     slug: ${{ github.repository }}
+    #     flags: unittests
+    #     name: codecov-umbrella
+    #     verbose: true
+    #     fail_ci_if_error: true
