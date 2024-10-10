@@ -3,7 +3,7 @@ locals {
 }
 
 module "platform" {
-  source = "git::https://github.com/kubediscovery/platform-infrastructure.git//modules/aws/eks_cluster?ref=develop"
+  source = "git::https://github.com/kubediscovery/platform-infrastructure.git//modules/aws/eks_cluster?ref=main"
   count  = local.provider
 
   project_name = var.project_name
