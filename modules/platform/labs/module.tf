@@ -5,5 +5,5 @@ module "platform" {
   project_name = var.project_name
   cidr_block   = var.cidr_block
   tags         = var.tags
-  region       = resource.null_resource.azure
+  region       = var.region
 }
