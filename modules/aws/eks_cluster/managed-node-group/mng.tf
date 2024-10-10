@@ -26,7 +26,6 @@ resource "aws_eks_node_group" "eks_node_group" {
   # release_version = var.release_version
   version = var.mng_version
 
-
   depends_on = [
     aws_iam_role_policy_attachment.eks_mng_role_attachment_worker,
     aws_iam_role_policy_attachment.eks_mng_role_attachment_ecr,

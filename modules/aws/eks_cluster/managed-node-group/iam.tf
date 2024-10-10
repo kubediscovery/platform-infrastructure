@@ -19,9 +19,7 @@ resource "aws_iam_role" "eks_mng_role" {
       Name = "${var.project_name}-mng-role"
     }
   )
-
 }
-
 
 resource "aws_iam_role_policy_attachment" "eks_mng_role_attachment_worker" {
   role       = aws_iam_role.eks_mng_role.name

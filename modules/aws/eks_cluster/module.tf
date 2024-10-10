@@ -31,11 +31,11 @@ module "managed_node_group" {
   subnet_ids   = [module.network.subnet_priv_1a, module.network.subnet_priv_1b]
 }
 
-module "lb_controller" {
-  source = "./lb-controller"
+# module "lb_controller" {
+#   source = "./lb-controller"
 
-  project_name      = var.project_name
-  tags              = var.tags
-  cluster_name      = module.cluster.cluster_name
-  oidc_provider_url = module.cluster.oidc_provider
-}
+#   project_name      = var.project_name
+#   tags              = var.tags
+#   cluster_name      = module.cluster.cluster_name
+#   oidc_provider_url = module.cluster.oidc_provider
+# }

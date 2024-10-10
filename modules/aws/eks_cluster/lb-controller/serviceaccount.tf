@@ -6,5 +6,4 @@ resource "kubernetes_service_account" "eks_controller_sa" {
       "eks.amazonaws.com/role-arn" = aws_iam_role.eks_lb_controller_role.arn
     }
   }
-
 }
