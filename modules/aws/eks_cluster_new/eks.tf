@@ -3,7 +3,7 @@ module "eks" {
   version = "~> 20.24"
 
   cluster_name    = "${var.project_name}-eks"
-  cluster_version = "1.29"
+  cluster_version = "1.28"
 
   # EKS Addons
   cluster_addons = {
